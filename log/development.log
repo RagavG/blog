@@ -715,3 +715,221 @@ Processing by PostsController#show as HTML
 Completed 200 OK in 92ms (Views: 86.4ms | ActiveRecord: 0.6ms)
 
 
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/spritle/.rvm/gems/ruby-2.5.1/bin/rake:23
+Migrating to CreateComments (20181222141108)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /home/spritle/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20181222141108_create_comments.rb:3
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "body" text, "post_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_2fd19c0db7"
+FOREIGN KEY ("post_id")
+  REFERENCES "posts" ("id")
+)[0m
+  ↳ db/migrate/20181222141108_create_comments.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE  INDEX "index_comments_on_post_id" ON "comments" ("post_id")[0m
+  ↳ db/migrate/20181222141108_create_comments.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181222141108"]]
+  ↳ /home/spritle/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (126.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /home/spritle/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /home/spritle/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /home/spritle/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /home/spritle/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/spritle/.rvm/gems/ruby-2.5.1/bin/rake:23
+Started GET "/" for 127.0.0.1 at 2018-12-22 20:00:37 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/spritle/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY created_at DESC[0m
+  ↳ app/views/posts/index.html.erb:1
+  Rendered posts/index.html.erb within layouts/application (18.0ms)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/spritle/Ragav/Rails-App/blog/app/assets/stylesheets/_normalize.css.scss to /home/spritle/Ragav/Rails-App/blog/app/assets/stylesheets/_normalize.scss. (called from _app_views_layouts_application_html_erb__4611126683714358575_70283448962760 at /home/spritle/Ragav/Rails-App/blog/app/views/layouts/application.html.erb:8)
+DEPRECATION WARNING: Extra .css in SCSS file is unnecessary. Rename /home/spritle/Ragav/Rails-App/blog/app/assets/stylesheets/_normalize.css.scss to /home/spritle/Ragav/Rails-App/blog/app/assets/stylesheets/_normalize.scss. (called from _app_views_layouts_application_html_erb__4611126683714358575_70283448962760 at /home/spritle/Ragav/Rails-App/blog/app/views/layouts/application.html.erb:8)
+Completed 200 OK in 1067ms (Views: 1014.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/posts/2" for 127.0.0.1 at 2018-12-22 20:00:40 +0530
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:21
+  Rendering posts/show.html.erb within layouts/application
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 2]]
+  ↳ app/views/posts/show.html.erb:16
+  [1m[36mComment Load (1.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 2]]
+  ↳ app/views/posts/show.html.erb:17
+  Rendered collection of templates [0 times] (0.1ms)
+  Rendered comments/_form.html.erb (33.0ms)
+  Rendered posts/show.html.erb within layouts/application (142.0ms)
+Completed 500 Internal Server Error in 156ms (ActiveRecord: 3.9ms)
+
+
+  
+ActionView::Template::Error (can't write unknown attribute `html`):
+    1: <%= form_for(@post, @post.comments.build) do |f| %>
+    2:   <p>
+    3:     <%= f.label :name %><br>
+    4:     <%= f.text_field :name %>
+  
+app/views/comments/_form.html.erb:1:in `_app_views_comments__form_html_erb__3359851612937061307_70283328587540'
+app/views/posts/show.html.erb:20:in `_app_views_posts_show_html_erb__1272993817865405861_70283329969880'
+Started GET "/posts/2" for 127.0.0.1 at 2018-12-22 20:01:51 +0530
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:21
+  Rendering posts/show.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 2]]
+  ↳ app/views/posts/show.html.erb:16
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 2]]
+  ↳ app/views/posts/show.html.erb:17
+  Rendered collection of templates [0 times] (0.0ms)
+  Rendered comments/_form.html.erb (53.3ms)
+  Rendered posts/show.html.erb within layouts/application (62.8ms)
+Completed 200 OK in 140ms (Views: 135.3ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/posts/2/comments" for 127.0.0.1 at 2018-12-22 20:02:14 +0530
+Processing by CommentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"49xQOVbSBWedwiSEMKgkK/maVTN1akumSXjIZnbNVoBAlnn7JmQGxwY1VxD7h59mi169/ZMyp4D/9v29ohB4HA==", "comment"=>{"name"=>"John Doe", "body"=>"First comment!"}, "commit"=>"Create Comment", "post_id"=>"2"}
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:4
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:5
+  [1m[36mComment Create (2.5ms)[0m  [1m[32mINSERT INTO "comments" ("name", "body", "post_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "John Doe"], ["body", "First comment!"], ["post_id", 2], ["created_at", "2018-12-22 14:32:14.318038"], ["updated_at", "2018-12-22 14:32:14.318038"]]
+  ↳ app/controllers/comments_controller.rb:5
+  [1m[35m (183.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/comments_controller.rb:5
+Redirected to http://lvh.me:3000/posts/2
+Completed 302 Found in 201ms (ActiveRecord: 186.6ms)
+
+
+Started GET "/posts/2" for 127.0.0.1 at 2018-12-22 20:02:14 +0530
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:21
+  Rendering posts/show.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 2]]
+  ↳ app/views/posts/show.html.erb:16
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 2]]
+  ↳ app/views/posts/show.html.erb:17
+  Rendered posts/show.html.erb within layouts/application (9.6ms)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 1.0ms)
+
+
+  
+ActionView::Template::Error (Missing partial comments/_comment with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/home/spritle/Ragav/Rails-App/blog/app/views"
+):
+    14:   </p>
+    15:   <div id="comments">
+    16:     <h2><%= @post.comments.count %> Comments</h2>
+    17:     <%= render @post.comments %>
+    18: 
+    19:     <h3>Add new comments:</h3>
+    20:     <%= render 'comments/form' %>
+  
+app/views/posts/show.html.erb:17:in `_app_views_posts_show_html_erb__1272993817865405861_70283330722600'
+Started GET "/posts/2" for 127.0.0.1 at 2018-12-22 20:03:43 +0530
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:21
+  Rendering posts/show.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 2]]
+  ↳ app/views/posts/show.html.erb:16
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 2]]
+  ↳ app/views/posts/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [1 times] (2.3ms)
+  Rendered comments/_form.html.erb (5.6ms)
+  Rendered posts/show.html.erb within layouts/application (19.3ms)
+Completed 200 OK in 89ms (Views: 83.2ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/posts/2" for 127.0.0.1 at 2018-12-22 20:09:31 +0530
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:21
+  Rendering posts/show.html.erb within layouts/application
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 2]]
+  ↳ app/views/posts/show.html.erb:16
+  [1m[36mComment Load (0.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 2]]
+  ↳ app/views/posts/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [1 times] (5.1ms)
+  Rendered comments/_form.html.erb (6.8ms)
+  Rendered posts/show.html.erb within layouts/application (57.9ms)
+Completed 200 OK in 175ms (Views: 136.0ms | ActiveRecord: 5.7ms)
+
+
+Started POST "/posts/2/comments" for 127.0.0.1 at 2018-12-22 20:09:43 +0530
+Processing by CommentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"iamNmdIdjn9Zs92VXSYQz4/clYM5MSwDmggYj2ohB8gq46RboquN38JErgGWCauC/Rh9Td9pwCUshi1UvvwpVA==", "comment"=>{"name"=>"2nd comment", "body"=>"Test this"}, "commit"=>"Create Comment", "post_id"=>"2"}
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:4
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:5
+  [1m[36mComment Create (2.4ms)[0m  [1m[32mINSERT INTO "comments" ("name", "body", "post_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "2nd comment"], ["body", "Test this"], ["post_id", 2], ["created_at", "2018-12-22 14:39:43.227155"], ["updated_at", "2018-12-22 14:39:43.227155"]]
+  ↳ app/controllers/comments_controller.rb:5
+  [1m[35m (171.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/comments_controller.rb:5
+Redirected to http://lvh.me:3000/posts/2
+Completed 302 Found in 193ms (ActiveRecord: 175.6ms)
+
+
+Started GET "/posts/2" for 127.0.0.1 at 2018-12-22 20:09:43 +0530
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:21
+  Rendering posts/show.html.erb within layouts/application
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 2]]
+  ↳ app/views/posts/show.html.erb:16
+  [1m[36mComment Load (0.9ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 2]]
+  ↳ app/views/posts/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [2 times] (4.5ms)
+  Rendered comments/_form.html.erb (9.3ms)
+  Rendered posts/show.html.erb within layouts/application (34.7ms)
+Completed 200 OK in 136ms (Views: 125.9ms | ActiveRecord: 4.4ms)
+
+
+Started DELETE "/posts/2/comments/2" for 127.0.0.1 at 2018-12-22 20:09:48 +0530
+Processing by CommentsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"iT2iOeWCkYH9mnaVx1F1Wp/6tAk7YJmJGVKYNZ65q0Mqd4v7lTSSIWZtBQEMfs4X7T5cx904da+v3K3uSmSF3w==", "post_id"=>"2", "id"=>"2"}
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:10
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT  "comments".* FROM "comments" WHERE "comments"."post_id" = ? AND "comments"."id" = ? LIMIT ?[0m  [["post_id", 2], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:11
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:12
+  [1m[36mComment Destroy (0.6ms)[0m  [1m[31mDELETE FROM "comments" WHERE "comments"."id" = ?[0m  [["id", 2]]
+  ↳ app/controllers/comments_controller.rb:12
+  [1m[35m (216.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/comments_controller.rb:12
+Redirected to http://lvh.me:3000/posts/2
+Completed 302 Found in 230ms (ActiveRecord: 218.8ms)
+
+
+Started GET "/posts/2" for 127.0.0.1 at 2018-12-22 20:09:48 +0530
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:21
+  Rendering posts/show.html.erb within layouts/application
+  [1m[35m (4.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 2]]
+  ↳ app/views/posts/show.html.erb:16
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = ?[0m  [["post_id", 2]]
+  ↳ app/views/posts/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [1 times] (3.6ms)
+  Rendered comments/_form.html.erb (8.2ms)
+  Rendered posts/show.html.erb within layouts/application (30.6ms)
+Completed 200 OK in 125ms (Views: 112.4ms | ActiveRecord: 5.6ms)
+
+
