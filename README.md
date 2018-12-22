@@ -1,24 +1,25 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby on Rails blog application built for training purpose
 
-Things you may want to cover:
+Things covered:
 
-* Ruby version
+* Creating post
 
-* System dependencies
+* Styling
 
-* Configuration
+* Edit or delete post
 
-* Database creation
+* Validations
 
-* Database initialization
+* Commenting feature
 
-* How to run the test suite
+* Creating static pages
 
-* Services (job queues, cache servers, search engines, etc.)
+* User authentication 
 
-* Deployment instructions
+![Alt text](/app/assets/images/screenshots/about.png "About page")
 
-* ...
+![Alt text](/app/assets/images/screenshots/display_screen.png "Blog display page")
+
+![Alt text](/app/assets/images/screenshots/edit_screen.png "Blog edit page")
